@@ -217,12 +217,12 @@ impl App {
                 if let Some(ref pb) = self.playback.clone() {
                     if pb.is_playing {
                         match self.spotify.pause().await {
-                            Ok(_) => self.set_status("⏸ Paused".into()),
+                            Ok(_) => self.set_status("⏸ Paused"),
                             Err(e) => self.set_status(format!("Error: {}", e)),
                         }
                     } else {
                         match self.spotify.play(None, None).await {
-                            Ok(_) => self.set_status("▶ Resumed".into()),
+                            Ok(_) => self.set_status("▶ Resumed"),
                             Err(e) => self.set_status(format!("Error: {}", e)),
                         }
                     }
@@ -232,7 +232,7 @@ impl App {
 
             Action::Next => {
                 match self.spotify.next().await {
-                    Ok(_) => self.set_status("⏭ Next track".into()),
+                    Ok(_) => self.set_status("⏭ Next track"),
                     Err(e) => self.set_status(format!("Error: {}", e)),
                 }
                 tokio::time::sleep(Duration::from_millis(300)).await;
@@ -241,7 +241,7 @@ impl App {
 
             Action::Previous => {
                 match self.spotify.previous().await {
-                    Ok(_) => self.set_status("⏮ Previous track".into()),
+                    Ok(_) => self.set_status("⏮ Previous track"),
                     Err(e) => self.set_status(format!("Error: {}", e)),
                 }
                 tokio::time::sleep(Duration::from_millis(300)).await;
@@ -350,7 +350,7 @@ impl App {
             Action::Refresh => {
                 self.load_playlists().await;
                 self.refresh_playback().await;
-                self.set_status("✓ Refreshed".into());
+                self.set_status("✓ Refreshed");
             }
         }
     }
